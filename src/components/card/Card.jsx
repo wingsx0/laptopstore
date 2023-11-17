@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import formatCurrency from "../../config";
 
 const Card = ({ item }) => {
   const { ten_sp, id_sp, gia, gia_km, hinh, hot } = item;
@@ -9,7 +10,7 @@ const Card = ({ item }) => {
         <Link to={`/product/${id_sp}`}>
           <img src={hinh} alt="" />
         </Link>
-        {hot === "1" && (
+        {hot === 1 && (
           <span className="text-xs bg-red-700 h-[22px] text-white py-[2px] px-4 rounded-full absolute bottom-0 left-4">
             <i class="fa-solid fa-fire"></i>
             <span className="ml-1 font-medium">Hot fire</span>
@@ -23,11 +24,11 @@ const Card = ({ item }) => {
           </h4>
           <div className="mb-2 ">
             <span className="pb-2 text-xs font-semibold text-gray-500 line-through">
-              {parseFloat(gia.toLocaleString("vi"))}₫
+              {formatCurrency(gia)}
             </span>
             <div>
               <span className="text-xl font-semibold text-red-500">
-                {parseFloat(gia_km?.toLocaleString("vi"))}₫
+                {formatCurrency(gia_km)}
               </span>
               <span className="px-1 ml-3 text-xs text-center text-red-500 bg-red-100 border border-red-500">
                 -{Math.floor(((gia - gia_km) / gia) * 100)}%

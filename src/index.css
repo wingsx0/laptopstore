@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.card-list .swiper-slide {
+    width: auto;
+  }
+  .cards .swiper-slide {
+    width: auto;
+  }
