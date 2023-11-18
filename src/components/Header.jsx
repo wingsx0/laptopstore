@@ -2,8 +2,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="bg-primary text-white sticky w-full top-0 z-50">
-      <nav className="flex items-center justify-center gap-x-2 py-4">
+    <header className="sticky top-0 z-50 w-full text-white bg-primary">
+      <nav className="flex items-center justify-center py-4 gap-x-2">
         <div>
           <img
             src="https://file.hstatic.net/200000636033/file/logo_fd11946b31524fbe98765f34f3de0628.svg"
@@ -11,7 +11,7 @@ const Header = () => {
             className="w-[140px]"
           />
         </div>
-        <div className="menu flex items-center py-3 rounded px-2 bg-red-800 gap-x-2">
+        <div className="flex items-center px-2 py-3 bg-red-800 rounded cursor-pointer menu gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -32,9 +32,9 @@ const Header = () => {
           <input
             type="text"
             placeholder="Bạn cần tìm gì ?"
-            className="w-full bg-white h-full py-2 px-4 pr-14 rounded text-black"
+            className="w-full h-full px-4 py-2 text-black bg-white rounded pr-14"
           />
-          <span className="absolute top-2/4 right-4 text-black -translate-y-2/4">
+          <span className="absolute text-black top-2/4 right-4 -translate-y-2/4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -51,7 +51,7 @@ const Header = () => {
             </svg>
           </span>
         </div>
-        <div className="text-sm font-medium flex items-center gap-x-2 cursor-pointer">
+        <div className="flex items-center text-sm font-medium cursor-pointer gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -71,7 +71,7 @@ const Header = () => {
             <span>1800.6975</span>
           </div>
         </div>
-        <div className="text-sm font-medium flex items-center gap-x-2 cursor-pointer">
+        <div className="flex items-center text-sm font-medium cursor-pointer gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -97,7 +97,7 @@ const Header = () => {
             <span>Showroom</span>
           </div>
         </div>
-        <div className="text-sm font-medium flex items-center gap-x-2 cursor-pointer">
+        <div className="flex items-center text-sm font-medium cursor-pointer gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -118,7 +118,7 @@ const Header = () => {
             <span>đơn hàng</span>
           </div>
         </div>
-        <div className="text-sm font-medium flex items-center gap-x-2 cursor-pointer">
+        <div className="flex items-center text-sm font-medium cursor-pointer gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -139,7 +139,7 @@ const Header = () => {
             <span>hàng</span>
           </div>
         </div>
-        <div className="text-sm font-medium flex items-center gap-x-2 cursor-pointer py-1 px-3 bg-red-700 rounded ">
+        <div className="flex items-center px-3 py-1 text-sm font-medium bg-red-700 rounded cursor-pointer gap-x-2 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
