@@ -20,11 +20,14 @@ const DetailPage = () => {
     const fetchRelatedProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4000/laptop/sptrongloai/${product.id_loai}`
+          `http://localhost:4000/laptop/sptrongloai/${id}`
         );
         const data = res.data;
+        if (!data) return null;
         setArrRelated(data);
-      } catch (err) {}
+      } catch (err) {
+        throw new Error(err);
+      }
     };
     fetchDetailProduct();
     fetchRelatedProduct();

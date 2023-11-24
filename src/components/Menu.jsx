@@ -1,30 +1,22 @@
-import React, { useState } from "react";
-import axios from "axios";
-// http://localhost:4000/laptop/loai/
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getListTypeProduct } from "../sagas/laptop/laptopSlice";
 const Menu = () => {
-  const [arrType, setArrType] = useState([]);
-  React.useEffect(() => {
-    const fetchDate = async () => {
-      try {
-        const res = await axios.get("http://localhost:4000/laptop/loai/");
-        const data = res.data;
-        setArrType(data);
-      } catch (err) {
-        throw new Error("Error fetching data Menu component: " + err);
-      }
-    };
-    fetchDate();
-  }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getListTypeProduct());
+  }, [dispatch]);
+  const { listTypeProduct } = useSelector((state) => state.laptop);
   return (
-    <ul className=" bg-white w-[216px] h-[496px] rounded p-2">
-      {arrType?.length > 0 &&
-        arrType.map((item) => (
-          <li
-            key={item.id_loai}
-            className="py-2 p-4 text-base font-medium hover:text-primary cursor-pointer"
-          >
-            Laptop {item.ten_loai}
-          </li>
+    <ul className=" bg-white w-[216px] h-[496px] rounded">
+      {listTypeProduct?.length > 0 &&
+        listTypeProduct.map((item) => (
+          <Link to={item.ten_loai.toLowerCase()} key={item.id_loai}>
+            <li className="p-4 py-2 text-base font-medium transition-all cursor-pointer hover:bg-primary hover:text-white">
+              Laptop {item.ten_loai}
+            </li>
+          </Link>
         ))}
     </ul>
   );

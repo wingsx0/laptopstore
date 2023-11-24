@@ -1,15 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full text-white bg-primary">
       <nav className="flex items-center justify-center py-4 gap-x-2">
         <div>
-          <img
-            src="https://file.hstatic.net/200000636033/file/logo_fd11946b31524fbe98765f34f3de0628.svg"
-            alt=""
-            className="w-[140px]"
-          />
+          <Link to={"/"}>
+            <img
+              src="https://file.hstatic.net/200000636033/file/logo_fd11946b31524fbe98765f34f3de0628.svg"
+              alt=""
+              className="w-[140px]"
+            />
+          </Link>
         </div>
         <div className="flex items-center px-2 py-3 bg-red-800 rounded cursor-pointer menu gap-x-2">
           <svg
@@ -34,7 +37,7 @@ const Header = () => {
             placeholder="Bạn cần tìm gì ?"
             className="w-full h-full px-4 py-2 text-black bg-white rounded pr-14"
           />
-          <span className="absolute text-black top-2/4 right-4 -translate-y-2/4">
+          <button className="absolute text-black top-2/4 right-4 -translate-y-2/4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -49,7 +52,7 @@ const Header = () => {
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
               />
             </svg>
-          </span>
+          </button>
         </div>
         <div className="flex items-center text-sm font-medium cursor-pointer gap-x-2">
           <svg

@@ -16,8 +16,8 @@ const ProductList = ({ title, arr }) => {
         <Swiper grabCursor={"true"} spaceBetween={8} slidesPerView={"auto"}>
           {arrProduct?.length > 0 &&
             arrProduct.map((item) => (
-              <SwiperSlide>
-                <Card item={item} key={item}></Card>
+              <SwiperSlide key={item.id_sp}>
+                <Card item={item}></Card>
               </SwiperSlide>
             ))}
         </Swiper>

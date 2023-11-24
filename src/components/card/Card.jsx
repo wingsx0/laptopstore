@@ -12,7 +12,7 @@ const Card = ({ item }) => {
         </Link>
         {hot === 1 && (
           <span className="text-xs bg-red-700 h-[22px] text-white py-[2px] px-4 rounded-full absolute bottom-0 left-4">
-            <i class="fa-solid fa-fire"></i>
+            <i className="fa-solid fa-fire"></i>
             <span className="ml-1 font-medium">Hot fire</span>
           </span>
         )}
@@ -37,7 +37,7 @@ const Card = ({ item }) => {
           </div>
           <div className="mb-4 text-xs">
             <span className="text-[#ff8a00] font-semibold mr-2">
-              0.0 <i class="fa-solid fa-star"></i>
+              0.0 <i className="fa-solid fa-star"></i>
             </span>
             <span>0 đánh giá</span>
           </div>

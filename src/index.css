@@ -7,3 +7,13 @@
   .cards .swiper-slide {
     width: auto;
   }
+  .paginate ul {
+    @apply flex items-center gap-x-3
+  }
+  
+  .paginate ul li {
+    @apply bg-gray-300 p-1 rounded
+  }
+  .paginate ul li.selected {
+    @apply bg-red-500 p-1 text-white rounded
+  }
