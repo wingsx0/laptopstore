@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import formatCurrency from "../../config";
 import { useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ const DetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [arrRelated, setArrRelated] = useState([]);
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDetailProduct = async () => {
       try {
         const res = await axios.get(`http://localhost:4000/laptop/sp/${id}`);

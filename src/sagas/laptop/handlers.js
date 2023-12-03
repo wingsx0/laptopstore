@@ -1,12 +1,11 @@
 import { call, put } from "redux-saga/effects";
 import { requestGetListTypeProduct, requestGetProduct } from "./requests";
-import { setKeywords, setListProduct, setListTypeProduct } from "./laptopSlice";
+import { setListProduct, setListTypeProduct } from "./laptopSlice";
 export default function* handleGetProduct(action) {
   try {
     const res = yield call(requestGetProduct);
     const data = res.data;
     yield put(setListProduct(data));
-    yield put(setKeywords("Hello"));
   } catch (error) {
     console.log(error);
   }

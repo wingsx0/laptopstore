@@ -5,6 +5,7 @@ const laptopSlice = createSlice({
     listProduct: [],
     listTypeProduct: [],
     query: "",
+    selectKeyword: "",
   },
   reducers: {
     setListProduct: (state, action) => ({
@@ -16,15 +17,20 @@ const laptopSlice = createSlice({
       listTypeProduct: action.payload,
     }),
     setQuery: (state, action) => ({ ...state, query: action.payload }),
+    setSelectKeyword: (state, action) => ({
+      ...state,
+      selectKeyword: action.payload,
+    }),
     getListProduct() {},
     getListTypeProduct() {},
   },
 });
 export const {
-  getListProduct,
   setListProduct,
-  setKeywords,
-  getListTypeProduct,
   setListTypeProduct,
+  setQuery,
+  getListProduct,
+  getListTypeProduct,
+  setSelectKeyword,
 } = laptopSlice.actions;
 export default laptopSlice.reducer;

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Card from "../card/Card";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import ButtonFilter from "../button/ButtonFilter";
 const ProductPage = ({ id = 1 }) => {
   const itemsPerPage = 20;
   const [itemOffset, setItemOffset] = useState(0);
   const [data, setData] = useState([]);
+  const { selectKeyword } = useSelector((state) => state.laptop);
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -13,13 +16,24 @@ const ProductPage = ({ id = 1 }) => {
           `http://localhost:4000/laptop/sptrongloai/${id}`
         );
         const data = res.data;
-        setData(data);
+        if (selectKeyword === "ascending") {
+          const newArr = data.slice().sort((a, b) => a.gia_km - b.gia_km);
+          setData(newArr);
+        } else if (selectKeyword === "increasing") {
+          const newArr = data.slice().sort((a, b) => b.gia_km - a.gia_km);
+          setData(newArr);
+        } else if (selectKeyword === "hot") {
+          const newArr = data.slice().filter((item) => item.hot === 1);
+          setData(newArr);
+        } else {
+          setData(data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, selectKeyword]);
   const pageCount = Math.ceil(data.length / itemsPerPage);
   const toIndex = itemOffset + itemsPerPage;
   const arr = data.slice(itemOffset, toIndex);
@@ -38,7 +52,7 @@ const ProductPage = ({ id = 1 }) => {
       </div>
       <div className="py-6 bg-white">
         <header className="p-6">
-          <div>
+          {/* <div>
             <div className="inline-block px-3 py-2 text-xs font-medium border border-gray-300 rounded">
               <i class="fa-solid fa-arrow-up-wide-short"></i>
               <span className="mx-2">Xắp theo:</span>
@@ -47,7 +61,8 @@ const ProductPage = ({ id = 1 }) => {
                 <i className="px-2 fa-solid fa-caret-down"></i>
               </span>
             </div>
-          </div>
+          </div> */}
+          <ButtonFilter></ButtonFilter>
         </header>
         <div className="flex flex-wrap gap-2 px-2">
           {arr?.length > 0 &&
