@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getListTypeProduct } from "../sagas/laptop/laptopSlice";
+import { getListTypeProduct } from "../../sagas/laptop/laptopSlice";
 const Menu = () => {
   const dispatch = useDispatch();
   useEffect(() => {

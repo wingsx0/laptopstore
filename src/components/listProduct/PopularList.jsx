@@ -42,7 +42,7 @@ function Card({ item }) {
           <span className="text-lg font-semibold text-[#e30019]">
             {formatCurrency(gia_km)}
           </span>
-          <span className="h-5 px-1 flex items-center justify-center text-xs text-red-500 bg-red-100 border border-red-500 rounded-sm">
+          <span className="flex items-center justify-center h-5 px-1 text-xs text-red-500 bg-red-100 border border-red-500 rounded-sm">
             <span>-{Math.floor(((gia - gia_km) / gia) * 100)}%</span>
           </span>
         </div>

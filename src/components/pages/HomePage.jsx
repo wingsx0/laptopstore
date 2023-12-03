@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Menu from "../Menu";
+import Menu from "../menu/Menu";
 import PopularList from "../listProduct/PopularList";
 import ProductList from "../listProduct/ProductList";
 import axios from "axios";

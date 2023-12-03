@@ -45,7 +45,7 @@ const SearchPage = () => {
   console.log(listSearchProduct, selectKeyword);
   return (
     <div>
-      <div className="banner">
+      <div className="mt-3 banner">
         <img
           src="https://file.hstatic.net/200000722513/file/gearvn-combo-gaming-gear-chunli-sf6-new_081ad2a50a2d40d8b0107bef7d5b6ec4.jpg"
           alt=""

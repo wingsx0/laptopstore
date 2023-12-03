@@ -1,7 +1,5 @@
 import "./App.css";
 import "swiper/css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 import HomePage from "./components/pages/HomePage";
 import { Routes, Route } from "react-router-dom";
 import DetailPage from "./components/pages/DetailPage";
@@ -11,6 +9,11 @@ import ProductPage from "./components/pages/ProductPage";
 import SearchPage from "./components/pages/SearchPage";
 import { useDispatch, useSelector } from "react-redux";
 import { getListTypeProduct } from "./sagas/laptop/laptopSlice";
+import PageLayout from "./components/layout/PageLayout";
+import AdminLayout from "./components/layout/AdminLayout";
+import AdminHome from "./components/pages/admin/AdminHome";
+import AdminList from "./components/listProduct/AdminList";
+import AdminAdd from "./components/pages/admin/AdminAdd";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,13 +22,12 @@ function App() {
   const { listTypeProduct } = useSelector((state) => state.laptop);
   return (
     <div>
-      <Header></Header>
-      <div className="w-[1200px] mx-auto ">
-        <Routes>
-          <Route path="/" element={<HomePage></HomePage>} />
-          <Route path={`/product/:id`} element={<DetailPage />} />
-          <Route path="*" element={<NotFound />} />
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<DetailPage />} />
           <Route path="/search" element={<SearchPage />} />
+
           {listTypeProduct.length > 0 &&
             listTypeProduct.map((item) => {
               const nameProduct = item.ten_loai.toLowerCase();
@@ -37,9 +39,14 @@ function App() {
                 />
               );
             })}
-        </Routes>
-      </div>
-      <Footer></Footer>
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={<AdminHome />}></Route>
+          <Route path="/admin/list" element={<AdminList />}></Route>
+          <Route path="/admin/add" element={<AdminAdd />}></Route>
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
