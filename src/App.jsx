@@ -12,8 +12,8 @@ import { getListTypeProduct } from "./sagas/laptop/laptopSlice";
 import PageLayout from "./components/layout/PageLayout";
 import AdminLayout from "./components/layout/AdminLayout";
 import AdminHome from "./components/pages/admin/AdminHome";
-import AdminList from "./components/listProduct/AdminList";
 import AdminAdd from "./components/pages/admin/AdminAdd";
+import AdminListPage from "./components/pages/admin/AdminListPage";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,7 +42,7 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="/admin" element={<AdminHome />}></Route>
-          <Route path="/admin/list" element={<AdminList />}></Route>
+          <Route path="/admin/list" element={<AdminListPage />}></Route>
           <Route path="/admin/add" element={<AdminAdd />}></Route>
         </Route>
         <Route path="*" element={<NotFound />} />

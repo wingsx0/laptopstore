@@ -27,7 +27,7 @@ const AdminAdd = () => {
     try {
       const res = await axios.post("http://localhost:4000/admin/sp", values);
       if (res.status === 200) {
-        navigate("/list");
+        navigate("/admin/list");
       }
     } catch (error) {
       console.log(error);
