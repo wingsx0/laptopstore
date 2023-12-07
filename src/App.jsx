@@ -14,6 +14,8 @@ import AdminLayout from "./components/layout/AdminLayout";
 import AdminHome from "./components/pages/admin/AdminHome";
 import AdminAdd from "./components/pages/admin/AdminAdd";
 import AdminListPage from "./components/pages/admin/AdminListPage";
+import AdminPut from "./components/pages/admin/AdminPut";
+import LoginLayout from "./components/layout/LoginLayout";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,7 +46,9 @@ function App() {
           <Route path="/admin" element={<AdminHome />}></Route>
           <Route path="/admin/list" element={<AdminListPage />}></Route>
           <Route path="/admin/add" element={<AdminAdd />}></Route>
+          <Route path="/admin/put/:id" element={<AdminPut />}></Route>
         </Route>
+        <Route path="/login" element={<LoginLayout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

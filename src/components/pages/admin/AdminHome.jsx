@@ -1,5 +1,4 @@
 import React from "react";
-import PopularList from "../../listProduct/PopularList";
 import AdminList from "../../listProduct/AdminList";
 
 const AdminHome = () => {
