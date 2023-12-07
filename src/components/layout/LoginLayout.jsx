@@ -6,7 +6,7 @@ const LoginLayout = () => {
   const { isLogin } = useSelector((state) => state.auth);
   return (
     <div className="flex items-center justify-center">
-      <div className="mt-[100px] bg-white rounded shadow-sm p-7 flex items-center justify-between gap-x-3 relative w-[1200px] overflow-hidden">
+      <div className="mt-[50px] bg-white rounded shadow-sm p-7 flex items-center justify-between gap-x-3 relative w-[1200px] overflow-hidden">
         <div>
           <header className="mb-5">
             <h2 className="text-5xl font-semibold leading-relaxed">

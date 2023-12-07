@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setIsLogin } from "../../sagas/authSaga/authSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   return (
     <form action="" className="w-[389px]">
       <div className="flex flex-col mb-4 gap-y-2">
@@ -41,7 +44,7 @@ const Signup = () => {
           <span>Already have an account?</span>
           <span
             className="text-blue-500 cursor-pointer"
-            // onClick={() => setIsLogin(true)}
+            onClick={() => dispatch(setIsLogin(true))}
           >
             Log in here!
           </span>
