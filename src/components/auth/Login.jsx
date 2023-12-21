@@ -1,19 +1,62 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setIsLogin } from "../../sagas/authSaga/authSlice";
+import {
+  setIsAdmin,
+  setIsLogin,
+  setLogin,
+  setUserInfo,
+} from "../../sagas/authSaga/authSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const schema = yup
+    .object({
+      un: yup.string().required("Vui lòng nhập username"),
+      pw: yup.string().required("Vui lòng nhập password"),
+    })
+    .required();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = async (values) => {
+    try {
+      const res = await axios.post("http://localhost:4000/users/login", values);
+      console.log();
+      if (res.status === 200) {
+        if (res.data.userInfo.role === 0) {
+          dispatch(setLogin(true));
+          dispatch(setUserInfo(res.data.userInfo));
+          window.history.back();
+        } else if (res.data.userInfo.role === 1) {
+          navigate("/admin");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <form action="" className="w-[389px]">
+    <form action="" className="w-[389px]" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col mb-4 gap-y-2">
         <label htmlFor="" className="text-sm font-medium">
-          Email
+          Username
         </label>
         <input
           type="text"
           placeholder="Enter your email"
+          {...register("un")}
           className="px-4 py-3 border border-gray-200 rounded bg-[#FAFAFC] "
         />
+        <p className="text-red-500">{errors?.un?.message}</p>
       </div>
       <div className="flex flex-col mb-4 gap-y-2">
         <label htmlFor="" className="text-sm font-medium">
@@ -22,8 +65,10 @@ const Login = () => {
         <input
           type="text"
           placeholder="Enter your email"
+          {...register("pw")}
           className="px-4 py-3 border border-gray-200 rounded bg-[#FAFAFC] "
         />
+        <p className="text-red-500">{errors?.pw?.message}</p>
       </div>
       <button className="w-full px-4 py-3 mb-3 font-medium text-white bg-blue-600 rounded">
         Login

@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Search from "../Search";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setLogin, setUserInfo } from "../../sagas/authSaga/authSlice";
 const Header = () => {
+  const { isLogin, userInfo } = useSelector((state) => state.auth);
   return (
     <header className="sticky top-0 z-50 w-full text-white bg-primary">
       <nav className="flex items-center justify-center py-4 gap-x-2">
@@ -121,29 +123,107 @@ const Header = () => {
             <span>hàng</span>
           </div>
         </div>
-        <div className="flex items-center px-3 py-1 text-sm font-medium bg-red-700 rounded cursor-pointer gap-x-2 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
+        {isLogin ? (
+          <User avatar={userInfo.avatar} username={userInfo.username} />
+        ) : (
+          <Link
+            to={"/login"}
+            className="flex items-center px-3 py-1 text-sm font-medium bg-red-700 rounded cursor-pointer gap-x-2 "
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-            />
-          </svg>
-          <Link to={"/login"} className="flex flex-col ">
-            <span>Đăng</span>
-            <span>Nhập</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            <div className="flex flex-col ">
+              <span>Đăng</span>
+              <span>Nhập</span>
+            </div>
           </Link>
-        </div>
+        )}
       </nav>
     </header>
   );
 };
+
+function User({ avatar, username }) {
+  const dispatch = useDispatch();
+  const [toggle, setToggle] = React.useState(false);
+  const handleLogout = () => {
+    dispatch(setLogin(false));
+    dispatch(setUserInfo({}));
+  };
+  return (
+    <div
+      onClick={() => setToggle((toggle) => !toggle)}
+      className="relative cursor-pointer"
+    >
+      <div className="flex items-center gap-x-3">
+        <div className="w-9 h-9">
+          <img
+            src={avatar}
+            alt=""
+            className="object-cover w-full h-full rounded-full"
+          />
+        </div>
+        <span className="text-lg font-medium">{username}</span>
+        <div>
+          {!toggle ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 15.75l7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          )}
+        </div>
+      </div>
+      {toggle ? (
+        <div className="absolute top-[100%] left-2/4 -translate-x-2/4 translate-y-3 rounded shadow-lg w-[150px] bg-white text-black py-2 px-3">
+          <div className="flex flex-col gap-y-2">
+            <div>
+              <span>Thông tin</span>
+            </div>
+            <div>
+              <span onClick={handleLogout}>Đăng xuất</span>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export default Header;
